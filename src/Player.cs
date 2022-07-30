@@ -2,10 +2,10 @@ using System;
 
 public class Player
 {
-	private string sprite = "→";
+	private string sprite = "⮚";
 	private string direction = "E";
 
-	private string[] directionSprites = {"←", "→", "↑", "↓"};
+	private string[] directionSprites = {"⮘", "⮚", "⮙", "⮛"};
 	private string[] directions = {"W", "E", "N", "S"};
 
 	private int score;

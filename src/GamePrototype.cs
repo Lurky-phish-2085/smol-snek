@@ -4,11 +4,15 @@ public class GamePrototype {
 
 	private Object[] level = new Object[6];
 	private Player p1 = new Player();
+	private Star star = new Star();
 
-	public GamePrototype(int playerPos)
+	private Random random = new Random();
+
+	public GamePrototype(int playerPos = 0)
 	{
 		PopulateLevel();
 		InitPlayerPosition(playerPos);
+		PlaceStarRandomly();
 	}
 
 	public Player GetPlayer()
@@ -27,6 +31,22 @@ public class GamePrototype {
 	private void InitPlayerPosition(int pos)
 	{
 		level[pos] = p1;
+	}
+
+	private void PlaceStarRandomly()
+	{
+		if (Array.Exists(level, x => x == star))
+		{
+			return;
+		}
+
+		int pos = random.Next(level.Length);
+		while (pos == Array.IndexOf(level, p1))
+		{
+			pos = random.Next(level.Length);
+		}
+
+		level[pos] = star;
 	}
 
 	private void DisplayLevel()
@@ -51,13 +71,14 @@ public class GamePrototype {
 
 	static public void Main()
 	{
-		GamePrototype game = new GamePrototype(0);
+		GamePrototype game = new GamePrototype();
 		game.DisplayLevel();
 
 		ConsoleKeyInfo info = new ConsoleKeyInfo();
 		while (info.Key != ConsoleKey.Escape)
 		{
 			Console.Clear();
+			game.PlaceStarRandomly();
 			game.DisplayScreen();
 
 			info = Console.ReadKey(true);

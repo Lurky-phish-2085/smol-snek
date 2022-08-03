@@ -61,7 +61,7 @@ public class GamePrototype {
 			game.DisplayScreen();
 
 			info = Console.ReadKey(true);
-			game.GetPlayer().Move(info);
+			game.GetPlayer().Move(info, game.level);
 		}
 	}
 }

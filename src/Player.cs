@@ -82,9 +82,49 @@ public class Player
 		return null;
 	}
 
-	public void Move(ConsoleKeyInfo info) 
+	// temp
+	public void Move(ConsoleKeyInfo info, Object[] level) 
 	{
 		direction = EvalKeyForDirection(info.Key);
+
+		// do checks
+		if (direction == null)
+		{
+			return;
+		}
+
+		/*
+		bool atTheBound = (pos == level.GetLowerBound(0)) || (pos == level.GetUpperBound(0))
+		if (atTheBound)
+		{
+			return;
+		}
+		*/
+
+		// find the player's position
+		int pos = Array.IndexOf(level, this);
+
+		// manipulate level
+		switch (direction)
+		{
+			case "W":
+				if (pos != level.GetLowerBound(0))
+				{
+					level[pos - 1] = this;
+					level[pos] = "-";
+				}
+				break;
+			case "E":
+				if (pos != level.GetUpperBound(0))
+				{
+					level[pos + 1] = this;
+					level[pos] = "-";
+				}
+				break;
+			default:
+				break;
+		}
+
 		UpdateSprite();
 	}
 

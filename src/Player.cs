@@ -82,6 +82,12 @@ public class Player
 		return null;
 	}
 
+	//temp
+	private bool HasCollidedToStar(Object obj)
+	{
+		return obj is Star;
+	}
+
 	// temp
 	public void Move(ConsoleKeyInfo info, Object[] level) 
 	{
@@ -110,6 +116,10 @@ public class Player
 			case "W":
 				if (pos != level.GetLowerBound(0))
 				{
+					if (HasCollidedToStar(level[pos - 1]))
+					{
+						IncrementScore();
+					}
 					level[pos - 1] = this;
 					level[pos] = "-";
 				}
@@ -117,6 +127,11 @@ public class Player
 			case "E":
 				if (pos != level.GetUpperBound(0))
 				{
+					if (HasCollidedToStar(level[pos + 1]))
+					{
+						IncrementScore();
+					}
+
 					level[pos + 1] = this;
 					level[pos] = "-";
 				}

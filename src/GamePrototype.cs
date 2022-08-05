@@ -118,7 +118,6 @@ public class GamePrototype {
 
 	static public void Main()
 	{
-		/*
 		Console.CursorVisible = false;
 
 		GamePrototype game = new GamePrototype();
@@ -128,7 +127,7 @@ public class GamePrototype {
 		while (info.Key != ConsoleKey.Escape)
 		{
 			Console.Clear();
-			game.PlaceStarRandomly();
+			//game.PlaceStarRandomly();
 			game.DisplayScreen();
 
 			info = Console.ReadKey(true);
@@ -136,6 +135,5 @@ public class GamePrototype {
 		}
 
 		Console.CursorVisible = true;
-		*/
 	}
 }

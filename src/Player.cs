@@ -89,7 +89,7 @@ public class Player
 	}
 
 	// temp
-	public void Move(ConsoleKeyInfo info, Object[] level) 
+	public void Move(ConsoleKeyInfo info, Object[,] level) 
 	{
 		direction = EvalKeyForDirection(info.Key);
 
@@ -108,39 +108,108 @@ public class Player
 		*/
 
 		// find the player's position
-		int pos = Array.IndexOf(level, this);
+		int playerX = 0;
+		int playerY = 0;
+
+		for (int i = 0; i < level.GetLength(0); i++)
+		{
+			for (int j = 0; j < level.GetLength(0); j++)
+			{
+				if (level[i,j] == this)
+				{
+					playerX = i;
+					playerY = j;
+				}
+			}
+		}
+
 
 		// manipulate level
 		switch (direction)
 		{
 			case "W":
-				if (pos != level.GetLowerBound(0))
+				if (playerX != level.GetUpperBound(0) || playerX != level.GetLowerBound(1))
 				{
-					if (HasCollidedToStar(level[pos - 1]))
+					/*
+					if (HasCollidedToStar(level[playerX, playerY - 1]))
 					{
 						IncrementScore();
 					}
-					level[pos - 1] = this;
-					level[pos] = "-";
+					*/
+					level[playerX, playerY - 1] = this;
+					level[playerX, playerY] = "-";
 				}
 				break;
 			case "E":
-				if (pos != level.GetUpperBound(0))
+				if (playerX != level.GetUpperBound(0) || playerX != level.GetLowerBound(1))
 				{
+					/*
+					if (HasCollidedToStar(level[playerX, playerY - 1]))
+					{
+						IncrementScore();
+					}
+					*/
+
+					level[playerX, playerY + 1] = this;
+					level[playerX, playerY] = "-";
+				}
+				break;
+			case "N":
+				//if (playerX != level.GetUpperBound(0))
+				if (playerY != level.GetLowerBound(1) || playerY != level.GetUpperBound(0))
+				{
+					/*
 					if (HasCollidedToStar(level[pos + 1]))
 					{
 						IncrementScore();
 					}
+					*/
 
-					level[pos + 1] = this;
-					level[pos] = "-";
+					level[playerX - 1, playerY] = this;
+					level[playerX, playerY] = "-";
+				}
+				break;
+			case "S":
+				//if (playerX != level.GetUpperBound(0))
+				if (playerY != level.GetLowerBound(1) || playerY != level.GetUpperBound(0))
+				{
+					/*
+					if (HasCollidedToStar(level[pos + 1]))
+					{
+						IncrementScore();
+					}
+					*/
+
+					level[playerX + 1, playerY] = this;
+					level[playerX, playerY] = "-";
 				}
 				break;
 			default:
 				break;
 		}
 
+
 		UpdateSprite();
+		// temp
+		// find the player's position
+		playerX = 0;
+		playerY = 0;
+
+		for (int i = 0; i < level.GetLength(0); i++)
+		{
+			for (int j = 0; j < level.GetLength(0); j++)
+			{
+				if (level[i,j] == this)
+				{
+					playerX = i;
+					playerY = j;
+				}
+			}
+		}
+		Console.WriteLine("X: " + playerX);
+		Console.WriteLine("Y: " + playerY);
+		// temp
+
 	}
 
 	public override string ToString()

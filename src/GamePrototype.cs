@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 public class GamePrototype {
 
@@ -56,6 +57,13 @@ public class GamePrototype {
 		// get the x and y coords of player
 		// check if our random xy is equal to that
 		// if not place star
+
+		// check if star already exists then exit. uses linq
+		bool starExists = level.Cast<object>().Any(element => element == star);
+		if (starExists)
+		{
+			return;
+		}
 
 		// get x y of next star
 		int x = random.Next(level.GetLength(0));
@@ -127,7 +135,7 @@ public class GamePrototype {
 		while (info.Key != ConsoleKey.Escape)
 		{
 			Console.Clear();
-			//game.PlaceStarRandomly();
+			game.PlaceStarRandomly();
 			game.DisplayScreen();
 
 			info = Console.ReadKey(true);

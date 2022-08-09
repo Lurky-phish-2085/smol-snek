@@ -130,50 +130,123 @@ public class Player
 			case "W":
 				if (playerX != level.GetUpperBound(0) || playerX != level.GetLowerBound(1))
 				{
-					if (HasCollidedToStar(level[playerX, playerY - 1]))
+					bool atLowerBound = playerY == level.GetLowerBound(0);
+					int reversedY = 0;
+					if (atLowerBound)
 					{
-						IncrementScore();
+						reversedY = level.GetUpperBound(0);
 					}
-					level[playerX, playerY - 1] = this;
-					level[playerX, playerY] = "-";
+
+					if (atLowerBound)
+					{
+						if (HasCollidedToStar(level[playerX, reversedY]))
+						{
+							IncrementScore();
+						}
+						level[playerX, reversedY] = this;
+						level[playerX, playerY] = "-";
+					}
+					else
+					{
+						if (HasCollidedToStar(level[playerX, playerY - 1]))
+						{
+							IncrementScore();
+						}
+						level[playerX, playerY - 1] = this;
+						level[playerX, playerY] = "-";
+					}
 				}
 				break;
 			case "E":
 				if (playerX != level.GetUpperBound(0) || playerX != level.GetLowerBound(1))
 				{
-					if (HasCollidedToStar(level[playerX, playerY + 1]))
+					bool atUpperBound = playerY == level.GetUpperBound(0);
+					int reversedY = 0;
+					if (atUpperBound)
 					{
-						IncrementScore();
+						reversedY = level.GetLowerBound(0);
 					}
 
-					level[playerX, playerY + 1] = this;
-					level[playerX, playerY] = "-";
+					if (atUpperBound)
+					{
+						if (HasCollidedToStar(level[playerX, reversedY]))
+						{
+							IncrementScore();
+						}
+						level[playerX, reversedY] = this;
+						level[playerX, playerY] = "-";
+					}
+					else
+					{
+						if (HasCollidedToStar(level[playerX, playerY + 1]))
+						{
+							IncrementScore();
+						}
+						level[playerX, playerY + 1] = this;
+						level[playerX, playerY] = "-";
+					}
 				}
 				break;
 			case "N":
 				//if (playerX != level.GetUpperBound(0))
 				if (playerY != level.GetLowerBound(1) || playerY != level.GetUpperBound(0))
 				{
-					if (HasCollidedToStar(level[playerX - 1, playerY]))
+					bool atLowerBound = playerX == level.GetLowerBound(0);
+					int reversedX = 0;
+					if (atLowerBound)
 					{
-						IncrementScore();
+						reversedX = level.GetUpperBound(0);
 					}
 
-					level[playerX - 1, playerY] = this;
-					level[playerX, playerY] = "-";
+					if (atLowerBound)
+					{
+						if (HasCollidedToStar(level[reversedX, playerY]))
+						{
+							IncrementScore();
+						}
+						level[reversedX, playerY] = this;
+						level[playerX, playerY] = "-";
+					}
+					else
+					{
+						if (HasCollidedToStar(level[playerX - 1, playerY]))
+						{
+							IncrementScore();
+						}
+						level[playerX - 1, playerY] = this;
+						level[playerX, playerY] = "-";
+					}
 				}
 				break;
 			case "S":
 				//if (playerX != level.GetUpperBound(0))
 				if (playerY != level.GetLowerBound(1) || playerY != level.GetUpperBound(0))
 				{
-					if (HasCollidedToStar(level[playerX + 1, playerY]))
+					bool atUpperBound = playerX == level.GetUpperBound(0);
+					int reversedX = 0;
+					if (atUpperBound)
 					{
-						IncrementScore();
+						reversedX = level.GetLowerBound(0);
 					}
 
-					level[playerX + 1, playerY] = this;
-					level[playerX, playerY] = "-";
+					if (atUpperBound)
+					{
+						if (HasCollidedToStar(level[reversedX, playerY]))
+						{
+							IncrementScore();
+						}
+						level[reversedX, playerY] = this;
+						level[playerX, playerY] = "-";
+					}
+					else
+					{
+						if (HasCollidedToStar(level[playerX + 1, playerY]))
+						{
+							IncrementScore();
+						}
+						level[playerX + 1, playerY] = this;
+						level[playerX, playerY] = "-";
+					}
 				}
 				break;
 			default:

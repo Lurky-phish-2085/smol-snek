@@ -130,12 +130,10 @@ public class Player
 			case "W":
 				if (playerX != level.GetUpperBound(0) || playerX != level.GetLowerBound(1))
 				{
-					/*
 					if (HasCollidedToStar(level[playerX, playerY - 1]))
 					{
 						IncrementScore();
 					}
-					*/
 					level[playerX, playerY - 1] = this;
 					level[playerX, playerY] = "-";
 				}
@@ -143,12 +141,10 @@ public class Player
 			case "E":
 				if (playerX != level.GetUpperBound(0) || playerX != level.GetLowerBound(1))
 				{
-					/*
-					if (HasCollidedToStar(level[playerX, playerY - 1]))
+					if (HasCollidedToStar(level[playerX, playerY + 1]))
 					{
 						IncrementScore();
 					}
-					*/
 
 					level[playerX, playerY + 1] = this;
 					level[playerX, playerY] = "-";
@@ -158,12 +154,10 @@ public class Player
 				//if (playerX != level.GetUpperBound(0))
 				if (playerY != level.GetLowerBound(1) || playerY != level.GetUpperBound(0))
 				{
-					/*
-					if (HasCollidedToStar(level[pos + 1]))
+					if (HasCollidedToStar(level[playerX - 1, playerY]))
 					{
 						IncrementScore();
 					}
-					*/
 
 					level[playerX - 1, playerY] = this;
 					level[playerX, playerY] = "-";
@@ -173,12 +167,10 @@ public class Player
 				//if (playerX != level.GetUpperBound(0))
 				if (playerY != level.GetLowerBound(1) || playerY != level.GetUpperBound(0))
 				{
-					/*
-					if (HasCollidedToStar(level[pos + 1]))
+					if (HasCollidedToStar(level[playerX + 1, playerY]))
 					{
 						IncrementScore();
 					}
-					*/
 
 					level[playerX + 1, playerY] = this;
 					level[playerX, playerY] = "-";
